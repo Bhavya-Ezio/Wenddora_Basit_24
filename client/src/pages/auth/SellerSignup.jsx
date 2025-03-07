@@ -26,7 +26,7 @@ const SellerSignup = () => {
     try {
       await dispatch(registerSeller(formData)).unwrap();
       alert("Registration successful! Please log in.");
-      navigate("/auth/kyc-submit");
+      navigate("kyc-submit");
     } catch (err) {
       alert(error || "Registration failed!");
     }

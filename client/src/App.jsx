@@ -43,7 +43,7 @@ function App() {
 
   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
-  console.log(isLoading, user);
+  console.log(isLoading, user,isAuthenticated);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">

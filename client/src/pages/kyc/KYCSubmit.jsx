@@ -16,6 +16,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
@@ -30,6 +31,7 @@ const formSchema = z.object({
 
 const KYCSubmit = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -69,6 +71,7 @@ const KYCSubmit = () => {
       
       form.reset();
       document.getElementById("kyc-form").reset();
+      navigate("/auth/seller-login");
     } catch (error) {
       console.error(error);
       

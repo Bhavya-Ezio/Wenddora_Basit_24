@@ -4,7 +4,7 @@ const User = require("../../models/User");
 
 // Register (unchanged)
 const registerUser = async (req, res) => {
-  console.log("Received request body:", req.body); // Debug: Log full request body
+  // console.log("Received request body:", req.body); // Debug: Log full request body
 
   let { userName, email, password, role } = req.body;
 
