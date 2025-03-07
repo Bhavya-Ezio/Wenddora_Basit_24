@@ -83,11 +83,11 @@ function HeaderRightContent() {
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-      <div className="relative flex items-center gap-2 w-40 h-7 group">
+      <div className="relative flex items-center gap-2 w-40 h-7">
         <input
           type="text"
           placeholder="Search..."
-          className="h-7 transition-opacity duration-300 opacity-0 group-hover:opacity-100 pl-3"
+          className="h-7 transition-opacity duration-300 opacity-0 focus:opacity-100 pl-3"
           style={{ width: '100%' }}
         />
         <Search

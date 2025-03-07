@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginFormControls } from "@/config";
 import CommonForm from '@/components/common/form';
 import { useToast } from '@/hooks/use-toast';
@@ -15,6 +15,7 @@ export default function AuthLogin() {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   function onSubmit(event) {
     event.preventDefault();
@@ -24,6 +25,7 @@ export default function AuthLogin() {
         toast({
           title: data?.payload?.message,
         });
+        navigate("/shop/home");
       } else {
         toast({
           title: data?.payload?.message,

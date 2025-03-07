@@ -71,7 +71,6 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
-          <Route path="kyc-review" element={<AdminKYCReview />} />
           <Route path="settings" element={<AdminSettings />} />
 
 
@@ -94,6 +93,7 @@ function App() {
         <Route path="/kyc-submit" element={<KYCSubmit />} />
         <Route path="/kyc-status" element={<KYCStatus />} />
         <Route path="/unauth-page" element={<UnauthPage />} />
+        <Route path="/kyc-review" element={<AdminKYCReview />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
