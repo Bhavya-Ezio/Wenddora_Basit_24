@@ -1,4 +1,4 @@
-import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Search } from "lucide-react";
+import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, Search, Gavel  } from "lucide-react";
 import {
   Link,
   useLocation,
@@ -96,6 +96,14 @@ function HeaderRightContent() {
           className="cursor-pointer absolute right-0"
         />
       </div>
+      <Button
+        onClick={() => navigate("/auctions")}
+        variant="outline"
+        className="flex items-center gap-2"
+      >
+        <Gavel  className="w-5 h-5" />
+        Auctions
+      </Button>
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
           onClick={() => setOpenCartSheet(true)}

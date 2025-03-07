@@ -31,6 +31,8 @@ import KYCSubmit from "./pages/kyc/KYCSubmit";
 import KYCStatus from "./pages/kyc/KYCStatus";
 import AdminKYCReview from "./pages/kyc/AdminKYCReview";
 import AdminSettings from "./pages/admin-view/settings";
+import Auctions from "./pages/auction/auctions";
+import AuctionPage from "./pages/auction/auctionPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -95,6 +97,8 @@ function App() {
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/kyc-submit/:id" element={<KYCSubmit />} />
+        <Route path="/auctions" element={<Auctions />} />
+        <Route path="/auction/:id" element={<AuctionPage />} />
       </Routes>
     </div>
   );
