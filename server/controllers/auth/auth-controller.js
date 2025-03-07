@@ -28,7 +28,7 @@ const registerUser = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ success: true, message: "Registration successful" });
+    res.status(201).json({ id: newUser._id, success: true, message: "Registration successful" });
 
   } catch (e) {
     console.error("Error during registration:", e);
@@ -148,4 +148,4 @@ const isAdmin = (req, res, next) => {
 
 
 
-module.exports = { registerUser, loginUser, logoutUser, authMiddleware ,authenticateUser, isAdmin  };
+module.exports = { registerUser, loginUser, logoutUser, authMiddleware, authenticateUser, isAdmin };

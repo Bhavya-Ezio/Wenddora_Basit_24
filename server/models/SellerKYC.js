@@ -15,6 +15,7 @@ const SellerKYCSchema = new mongoose.Schema({
   submittedAt: { type: Date, default: Date.now },
   reviewedAt: { type: Date }, // ✅ Store review date
   adminRemarks: { type: String }, // ✅ Admin remarks on verification
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true }, // Reference to the User model
 });
 
 module.exports = mongoose.model("SellerKYC", SellerKYCSchema);

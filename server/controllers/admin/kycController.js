@@ -4,14 +4,15 @@ const { imageUploadUtil } = require("../../helpers/upload");
 // ✅ Submit KYC (Anyone can submit)
 exports.submitKYC = async (req, res) => {
   try {
-    const { fullName, businessName, aadhaarNumber, panNumber, address } = req.body;
+    console.log(req.body)
+    const { fullName, businessName, aadhaarNumber, panNumber, address, userId } = req.body;
 
     if (!req.files || !req.files["aadhaarFront"] || !req.files["aadhaarBack"] || !req.files["panCard"]) {
       return res.status(400).json({ success: false, message: "All KYC documents are required." });
     }
 
     // ✅ Debugging: Check if files are being received
-    console.log("Received Files:", req.files);
+    // console.log("Received Files:", req.files);
 
     // ✅ Ensure file buffers are not empty
     if (
@@ -22,6 +23,7 @@ exports.submitKYC = async (req, res) => {
       return res.status(400).json({ success: false, message: "File buffers are empty." });
     }
 
+    console.log(userId)
     console.log("Uploading to Cloudinary...");
 
     const aadhaarFrontUrl = await imageUploadUtil(req.files["aadhaarFront"][0].buffer, "aadhaarFront");
@@ -39,6 +41,7 @@ exports.submitKYC = async (req, res) => {
         aadhaarBack: aadhaarBackUrl,
         panCard: panCardUrl,
       },
+      userId: userId,
     });
 
     await newKYC.save();
@@ -85,20 +88,21 @@ exports.verifyKYC = async (req, res) => {
 exports.getKYCStatus = async (req, res) => {
   try {
     const { id } = req.params; // ✅ Get user ID from URL
+    // console.log("id: ", id);
 
     // ✅ Validate if ID is a valid MongoDB ObjectId
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
       return res.status(400).json({ success: false, message: "Invalid KYC ID format" });
     }
 
-    const kyc = await SellerKYC.findById(id);
+    const kyc = await SellerKYC.find({ userId: id });
     if (!kyc) {
       return res.status(404).json({ success: false, message: "KYC record not found" });
     }
 
-    res.json({ success: true, status: kyc.status, kyc });
+    return res.json({ success: true, status: kyc.status, kyc: kyc[0] });
   } catch (error) {
     console.error("Error fetching KYC status:", error);
-    res.status(500).json({ success: false, message: "Error fetching KYC status", error });
+    return res.status(500).json({ success: false, message: "Error fetching KYC status", error });
   }
 };

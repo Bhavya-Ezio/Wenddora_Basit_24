@@ -44,7 +44,7 @@ function App() {
 
   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
-  console.log(isLoading, user,isAuthenticated);
+  console.log(isLoading, user, isAuthenticated);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
@@ -55,11 +55,11 @@ function App() {
         />
         <Route
           path="/auth"
-          // element={
-          //   <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-          //     <AuthLayout />
-          //   </CheckAuth>
-          // }
+        // element={
+        //   <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+        //     <AuthLayout />
+        //   </CheckAuth>
+        // }
         >
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
@@ -90,11 +90,11 @@ function App() {
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
         </Route>
-        <Route path="/kyc-submit" element={<KYCSubmit />} />
         <Route path="/kyc-status" element={<KYCStatus />} />
+        <Route path="kyc-review" element={<AdminKYCReview />} />
         <Route path="/unauth-page" element={<UnauthPage />} />
-        <Route path="/kyc-review" element={<AdminKYCReview />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/kyc-submit/:id" element={<KYCSubmit />} />
       </Routes>
     </div>
   );

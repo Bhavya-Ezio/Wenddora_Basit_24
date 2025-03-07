@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { 
+import {
   Form,
   FormControl,
   FormField,
@@ -32,7 +32,7 @@ const formSchema = z.object({
 const KYCSubmit = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,28 +53,29 @@ const KYCSubmit = () => {
 
   const onSubmit = async (data) => {
     const formDataToSend = new FormData();
-    
+    const userId = window.location.pathname.split('/').pop();
+
     Object.keys(data).forEach((key) => {
       formDataToSend.append(key, data[key]);
     });
-
+    formDataToSend.append("userId",userId);
     try {
       const response = await axios.post("http://localhost:5000/api/kyc/submit", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      
+
       toast({
         title: "Success",
         description: response.data.message || "KYC submitted successfully",
         variant: "success",
       });
-      
+
       form.reset();
       document.getElementById("kyc-form").reset();
       navigate("/auth/seller-login");
     } catch (error) {
       console.error(error);
-      
+
       toast({
         title: "Error",
         description: "KYC submission failed. Please try again.",
@@ -105,7 +106,7 @@ const KYCSubmit = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="businessName"
@@ -119,7 +120,7 @@ const KYCSubmit = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="aadhaarNumber"
@@ -133,7 +134,7 @@ const KYCSubmit = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="panNumber"
@@ -147,7 +148,7 @@ const KYCSubmit = () => {
                   </FormItem>
                 )}
               />
-              
+
               <FormField
                 control={form.control}
                 name="address"
@@ -161,45 +162,45 @@ const KYCSubmit = () => {
                   </FormItem>
                 )}
               />
-              
+
               <div className="space-y-4">
                 <FormItem>
                   <FormLabel>Aadhaar Front</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="file" 
-                      onChange={(e) => handleFileChange(e, "aadhaarFront")} 
+                    <Input
+                      type="file"
+                      onChange={(e) => handleFileChange(e, "aadhaarFront")}
                       className="cursor-pointer"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-                
+
                 <FormItem>
                   <FormLabel>Aadhaar Back</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="file" 
-                      onChange={(e) => handleFileChange(e, "aadhaarBack")} 
+                    <Input
+                      type="file"
+                      onChange={(e) => handleFileChange(e, "aadhaarBack")}
                       className="cursor-pointer"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-                
+
                 <FormItem>
                   <FormLabel>PAN Card</FormLabel>
                   <FormControl>
-                    <Input 
-                      type="file" 
-                      onChange={(e) => handleFileChange(e, "panCard")} 
+                    <Input
+                      type="file"
+                      onChange={(e) => handleFileChange(e, "panCard")}
                       className="cursor-pointer"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               </div>
-              
+
               <Button type="submit" className="w-full">Submit KYC</Button>
             </form>
           </Form>

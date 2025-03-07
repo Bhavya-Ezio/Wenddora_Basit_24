@@ -24,9 +24,10 @@ const SellerSignup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(registerSeller(formData)).unwrap();
+      const data = await dispatch(registerSeller(formData)).unwrap();
       alert("Registration successful! Please log in.");
-      navigate("/kyc-submit");
+      console.log(data)
+      navigate(`/kyc-submit/${data.id}`);
     } catch (err) {
       alert(error || "Registration failed!");
     }
