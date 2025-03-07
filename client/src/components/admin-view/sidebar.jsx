@@ -3,6 +3,7 @@ import {
     ChartNoAxesCombined,
     LayoutDashboard,
     ShoppingBasket,
+    User
   } from "lucide-react";
   import { Fragment } from "react";
   import { useNavigate } from "react-router-dom";
@@ -27,6 +28,13 @@ import {
       path: "/admin/orders",
       icon: <BadgeCheck />,
     },
+    {
+      id: "Profile",
+      label: "Profile",
+      path: "/admin/settings",
+      icon: <User />,
+
+    }
   ];
   
   function MenuItems({ setOpen }) {

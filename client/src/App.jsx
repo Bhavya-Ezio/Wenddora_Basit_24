@@ -30,6 +30,7 @@ import Home from "./pages/Home"; // New Home page (you'll need to create this fi
 import KYCSubmit from "./pages/kyc/KYCSubmit";
 import KYCStatus from "./pages/kyc/KYCStatus";
 import AdminKYCReview from "./pages/kyc/AdminKYCReview";
+import AdminSettings from "./pages/admin-view/settings";
 
 function App() {
   const dispatch = useDispatch();
@@ -71,6 +72,9 @@ function App() {
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
           <Route path="kyc-review" element={<AdminKYCReview />} />
+          <Route path="settings" element={<AdminSettings />} />
+
+
         </Route>
         <Route
           path="/shop"
